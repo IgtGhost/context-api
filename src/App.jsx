@@ -1,40 +1,25 @@
-import "./App.css"
+// src/App.jsx
+import React, { useContext } from "react";
+import "./App.css";
+import { CountContext } from "./context/CountContext";
 
-import ButtonComp from "./components/ButtonComp"
-// import { useContext } from "react"
-//import { CountContext } from "./context/CountContext"
-import HeaderComp from "./components/HeaderComp"
+const App = () => {
+  const { count, increment, decrement } = useContext(CountContext); // Access the context
 
-function App() {
-	//const { count, setCount } = useContext(CountContext)
+  return (
+    <div className="app" style={{ textAlign: "center", padding: "2rem" }}>
+      <h1>Counter App</h1>
+      <h2>Count: {count}</h2>
+      <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+        <button onClick={increment} style={{ padding: "0.5rem 1rem" }}>
+          Increment
+        </button>
+        <button onClick={decrement} style={{ padding: "0.5rem 1rem" }}>
+          Decrement
+        </button>
+      </div>
+    </div>
+  );
+};
 
-	const user = null // change this to later to the use context user ❗
-
-	// const handleClick = () => {
-	// 	setCount((prev) => prev + 1)
-	// }
-
-	//const handleLogIn = () => {
-	// }
-
-	return (
-		<main
-			className="app"
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				gap: "1em",
-				backgroundColor: user ? "#024d1021" : "#4d020221",
-				padding: ".5em",
-			}}
-		>
-			<HeaderComp />
-			<ButtonComp text="add" onclick={() => true} />
-			Your result is dynamic count here ...
-			{/* You'll need another button comp here later */}
-			{user && <div className="alert">You are now logged in !!!</div>}
-		</main>
-	)
-}
-
-export default App
+export default App;

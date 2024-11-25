@@ -1,7 +1,19 @@
-/* eslint-disable react/prop-types */
+
+import React, { createContext, useState } from 'react';
+
+export const CountContext = createContext();
 
 const CountContextProvider = ({ children }) => {
-	return <div> {children}</div>
-}
+	const [count, setCount] = useState(0);
 
-export default CountContextProvider
+	const increment = () => setCount(count + 1);
+	const decrement = () => setCount(count - 1);
+
+	return (
+		<CountContext.Provider value={{ count, increment, decrement }}>
+			{children}
+		</CountContext.Provider>
+	);
+};
+
+export default CountContextProvider;
